@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        Hello! Going to extract data from an html file. It will show an HTML5 Form.
+        <div id="html5-form"></div>
+        <script>
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                console.log(xhr.readyState);
+                console.log("event occured");
+                if ((xhr.status >= 200 && xhr.status < 400) && ( xhr.readyState === 4)) { // http response is complete
+                    document.getElementById("html5-form").innerHTML = xhr.responseText;
+                } else if (xhr.status >= 400) {
+                    alert("Error fetching your file 'html5-form.txt'");
+                }
+            });
+            xhr.open("GET", "/html5_form.html", true); // we will always give true (asynchronous request will be  initiated)
+            xhr.send();
+        </script>
+        
+    </body>
+</html>
